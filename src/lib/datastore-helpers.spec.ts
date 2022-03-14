@@ -21,11 +21,13 @@ test('isKeyComplete', (t) => {
 
 test('assertIsKey', (t) => {
   t.notThrows(() => assertIsKey(new Key({ path: ['a', 'b'] })));
+  t.notThrows(() => assertIsKey(new Key({ path: ['a', 'b', 'c'] })));
   t.throws(() => assertIsKey(2));
 });
 
 test('assertIsKeyComplete', (t) => {
-  t.notThrows(() => assertIsKeyComplete(new Key({ path: ['a', 'b'] })));
-  t.throws(() => assertIsKeyComplete(new Key({ path: ['a'] })));
   t.throws(() => assertIsKeyComplete(2));
+  t.throws(() => assertIsKeyComplete(new Key({ path: ['a'] })));
+  t.notThrows(() => assertIsKeyComplete(new Key({ path: ['a', 'b'] })));
+  t.throws(() => assertIsKeyComplete(new Key({ path: ['a', 'b', 'c'] })));
 });
